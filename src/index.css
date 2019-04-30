@@ -12,105 +12,35 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-/*--------------------- Login Page --------------------------*/
-@import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
-.login-block{
-  background: #DE6262;
-  background: -webkit-linear-gradient(to bottom, #FFB88C, #DE6262); 
-  background: linear-gradient(to bottom, #FFB88C, #DE6262); 
-  float:left;
-  width:100%;
-  padding : 50px 0;
-}
 
-.banner-sec{
-  background:url(https://static.pexels.com/photos/33972/pexels-photo.jpg)  no-repeat left bottom; 
-  background-size:cover; 
-  min-height:500px; 
-  border-radius: 0 10px 10px 0; 
-  padding:0;
-}
-
-.container{
-  background:#fff; 
-  border-radius: 10px; 
-  box-shadow:15px 20px 0px rgba(0,0,0,0.1);
-}
-.login-sec{
-  padding: 50px 30px;
-   position:relative;
-}
-.login-sec .copy-text{
-  position:absolute;
-  width:80%; 
-  bottom:20px; 
-  font-size:13px; 
+h1{
   text-align:center;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 45px;
+  font-weight: 700;
+  line-height: 68px;  
 }
-.login-sec .copy-text i{
-  color:#FEB58A;
+
+
+#root{
+  background-image: url(./public/images/background.png);
+  background-repeat: no-repeat;
+  width:100%;
+  height: 900px;
 }
-.login-sec .copy-text a{
-  color:#E36262;
-}
-.login-sec h2{
-  margin-bottom:30px; 
-  font-weight:800; 
-  font-size:30px; 
-  color: #DE6262;
-}
-.login-sec h2:after{
-  content:" "; 
-  width:100px; 
-  height:5px; 
-  background:#FEB58A; 
-  display:block; 
-  margin-top:20px; 
-  border-radius:3px; 
-  margin-left:auto;
-  margin-right:auto
-}
-.btn-login{
-  background: #DE6262;
-  color:#fff; 
-  font-weight:600;
-}
-.banner-text{
-  width:70%; 
-  position:absolute; 
-  bottom:40px; 
-  padding-left:20px;
-}
-.banner-text h2{
-  color:#fff; 
-  font-weight:600;
-}
-.banner-text h2:after{
-  content:" "; 
-  width:100px; 
-  height:5px; 
-  background:#FFF; 
-  display:block; 
-  margin-top:20px; 
-  border-radius:3px;
-}
-.banner-text p{
-  color:#fff;
-}
+
+/*--------------------- Login Page --------------------------*/
+
 /*-------------------------------------------------------*/
 
 
 /*------------------- Footer ----------------------------*/
-Footer{
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: #6c757d;
-  color: black;
-  text-align: center;
+footer{
+  background-color: #28a745;
+  width:100%;
   height: 120px;
-  margin-left: 150px;
+  color:#ffff;
 }
 /*--------------------------------------------------------*/
 
@@ -121,63 +51,138 @@ Header{
   width: 100%;
   height: 100px;
 }
+
+.nav-link{
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 12px;
+  margin-right: 20px;
+}
 /*--------------------------------------------------------*/
 
 
 /*------------------------ Home -------------------------*/
-#home{
+#dashboard{
   margin: 0 auto;
-  width:50%;
-  height: 500px;
+  width:100%;
+  height: 800px;
 }
 
-#home button{
-  margin-left: 160px;
-  margin-top: 180px;
-  width:200px;
-  height: 100px;
+
+#dashboard .input-group{
+  margin: 0 auto;
+  width: 522px;
+  height: 48px;
+  border: 1px solid #36ab4c;
+  background-color: #ffffff;
 }
 /*--------------------------------------------------------*/
 
-
-
-/*---------------------- SideNav -------------------------*/
-.sidenav {
-  height: 100%; 
-  width: 160px; 
-  position: fixed;
-  z-index: 1; 
-  top: 0; 
-  left: 0;
-  background-color: #111; 
-  overflow-x: hidden; 
-  padding-top: 20px;
-  margin-top: 55px;
+/*---------------------- Research Box --------------------*/
+#researchBox{
+  margin: 0 auto;
+  width: 247px;
+  height: 266px;
+  border: 1px solid #30d36a;
+  margin-left: 28px;
+  margin-top: 40px;
 }
 
-.sidenav a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 15px;
-  color: #818181;
+#researchBox label{
+  margin-left:5px;
+  color:#ffff;
+}
+
+#researchBox img{
+  width: 247px;
+  height: 133px;
+}
+
+#researchBox i{
+  font-size:36px;
+  color: #36ac4d;
+  width: 14px;
+  height: 14px;
+  margin-left: 5px;
+}
+
+#researchBox span{
+  float: right;
+  margin-top:18px;
+  margin-right: 5px;
+}
+
+#boxes{
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+/*--------------------------------------------------------*/
+
+/*--------------------- Begin Research ------------------*/
+#beginResearch{
+  margin:0 auto;
+  width: 80%;
+  height: 800px;
+}
+
+#beginResearch input, textarea{
+  width: 327px;
+  margin-top: 25px;
+  border: 1px solid #36ab4c;
+  margin-left: 20px;
+}
+
+#beginResearch label, select{
+  margin-left: 25px;
+  color:#ffff;
+}
+
+#beginResearch select{
+  width:155px;
+  height: 48px;
+  margin-top:-6px;
+  border: 1px solid #36ab4c;
+}
+
+#beginResearch input{
   display: block;
+  height: 48px;
 }
 
-.sidenav a:hover {
-  color: #f1f1f1;
+#beginResearch .number_of_plants{
+  width:155px;
 }
 
-/* .main {
-  margin-left: 160px;
-  padding: 0px 10px;
-} */
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+#beginResearch textarea{
+  height: 109px;
+  width: 327px;
+  border: 1px solid #36ab4c;
+  margin-top: -110px;
+  margin-left: 25px;
 }
-/* -----------------------------------------------------------*/
 
+#beginResearch img{
+  float:right;
+  margin-right: 120px;
+  margin-top:25px;
+  width: 318px;
+  height: 200px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  border: 1px solid #36ab4c;
+}
+
+#beginResearch button{
+  float:right;
+  width: 96px;
+  height: 48px;
+  border: 2px solid #36ab4c;
+  margin-top:80px;
+}
+
+/*--------------------------------------------------------*/
 
 /* ---------------------- Plant -----------------------------*/
 #plant{
@@ -212,11 +217,22 @@ Header{
 #research_history{
   margin: 0 auto;
   width: 60%;
+  height: 800px;
 }
 
 #research_history .table{
   text-align: center;
+  margin-top:40px;
+  color: #ffffff;
 }
+
+
+#research_history .table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n) > th {
+  background-color: #689175;
+}
+
+
+
 
 #research_history button{
   border-radius: 10px;
@@ -235,6 +251,14 @@ Header{
   border: 1px solid #333;
   background-color: #f8f9fa;
 }
+
+.progressBar{
+  width:200px;
+  height: 20px;
+}
+
+
+
 /* -----------------------------------------------------------*/
 
 /* ------------------------ Filler -------------------------*/

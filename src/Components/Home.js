@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route, Redirect } from 'react-router';
+import ResearchBox from './ResearchBox';
 
 // const Home  = () => {
  
@@ -29,17 +30,20 @@ class Home extends Component{
 
 
     return (
-        <div className="home">              
-            <div id= "home">
-                <button type="button" className="btn btn-primary btn-lg" onClick={()=>{
-                    {this.setState({BeginResearch:true})}
-                    }}>Begin Research
-                </button>
-                <button type="button" className="btn btn-secondary btn-lg"onClick={()=>{
-                    {this.setState({ResearchHistory:true})}
-                    }}> Research History
-                </button>
-            </div>            
+        <div id="dashboard">
+            <div className="input-group md-form form-sm form-1 pl-0">
+                <div className="input-group-prepend">
+                    <span className="input-group-text purple lighten-3" id="basic-text1"><i className="fas fa-search text-white"
+                        aria-hidden="true"></i></span>
+                </div>
+                <input className="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search"></input>>
+            </div>
+            <div id="boxes">
+                <ResearchBox></ResearchBox>
+                <ResearchBox></ResearchBox>
+                <ResearchBox></ResearchBox>
+                <ResearchBox></ResearchBox>
+            </div>
         </div>
     )};
 }

@@ -1,22 +1,56 @@
 import React, { Component } from "react";
 import { Route, Redirect } from 'react-router';
-import ProgressBar from './ProgressBar';
-import $ from "jquery";
+//import { Progress } from 'reactstrap';
+import { Progress } from 'react-sweet-progress';
+import "react-sweet-progress/lib/style.css";
+import {GetResearchesByOwner} from '../Utils/getResearches';
 
 class ResearchHistory extends Component{
     constructor(props){
         super(props)
 
         this.state ={
-            percentage:0
+            percentage:0,
+            researches :[]
         }
     }
 
+    componentDidMount()
+    {
+        let jsonData = GetResearchesByOwner("5c48386ae7179a5449418a67");
+        this.setState({ researches : jsonData.responseJSON});
+    }
+
+    renderTableBody() {
+        const { researches} = this.state;
+        let i = 0;
+        console.log(researches);
+        return researches.map(research => {
+            ++i;
+          return (
+            <tr>
+            <th scope="row">{i}</th>
+                <td>{research.Name}</td>
+                <td>{research.Description}</td>
+                <td>
+                    <Progress
+                        type="circle"
+                        width={60}
+                        percent={30}
+                    />
+                </td>
+                <td><button className="btn btn-info">Go To Research</button></td>   
+            </tr>
+          )
+        });
+      }
+
+
     render(){
     return (
-
         <div id="research_history">
-            <table className="table table-hover table-responsive{-xl}">
+            <h1>Research History</h1>
+            <table className="table table-striped table-hover table- table-responsive{-xl}">
                 <thead>
                     <tr>
                     <th scope="col">#</th>
@@ -27,52 +61,7 @@ class ResearchHistory extends Component{
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        
-                        <th scope="row">1</th>
-                        <td>Lemon Pilot</td>
-                        <td>This Research will be on Lemon Tree bla bla bla</td>
-                        <td>
-                            <ProgressBar percentage={25}></ProgressBar>
-                        </td>
-                        <td><button className="btn btn-info">Go To Research</button></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Apple Check</td>
-                        <td>This Research will be on Apple Tree</td>
-                        <td>
-                            <ProgressBar percentage={55}></ProgressBar>
-                        </td>
-                        <td><button className="btn btn-info">Go To Research</button></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Nana Pilot1</td>
-                        <td>This Research will be on Nana Plant</td>
-                        <td>
-                            <ProgressBar percentage={10}></ProgressBar>
-                        </td>
-                        <td><button className="btn btn-info">Go To Research</button></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Nana dash</td>
-                        <td>This Research will be on Nana Plant</td>
-                        <td>
-                            <ProgressBar percentage={70}></ProgressBar>
-                        </td>
-                        <td><button className="btn btn-info">Go To Research</button></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>Nana</td>
-                        <td>This Research will be on Nana Plant</td>
-                        <td>
-                            <ProgressBar percentage={100}></ProgressBar>
-                        </td>
-                        <td><button className="btn btn-info">Go To Research</button></td>
-                    </tr>
+                    {this.renderTableBody()}
                 </tbody>
             </table>
         </div>
