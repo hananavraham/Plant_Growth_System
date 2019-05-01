@@ -84,15 +84,10 @@ Header{
 #researchBox{
   margin: 0 auto;
   width: 247px;
-  height: 266px;
+  height: 293px;
   border: 1px solid #30d36a;
   margin-left: 28px;
-  margin-top: 40px;
-}
-
-#researchBox label{
-  margin-left:5px;
-  color:#ffff;
+  margin-top: 80px;
 }
 
 #researchBox img{
@@ -100,12 +95,20 @@ Header{
   height: 133px;
 }
 
+#researchBox div{
+  background-color: #ffffff;
+  height: 160px;
+}
+
 #researchBox i{
-  font-size:36px;
-  color: #36ac4d;
-  width: 14px;
-  height: 14px;
+  font-size:20px;
+  color: #333;
   margin-left: 5px;
+}
+
+#researchBox i:first-child{
+  float: right;
+  margin:5px;
 }
 
 #researchBox span{
@@ -116,8 +119,44 @@ Header{
 
 #boxes{
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: left;
 }
+
+#researchBox h5{
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 30px;
+  color:#36ac4d;
+  height: 30px;
+  margin: 0px 22px 2px 22px;
+}
+
+#researchBox article{
+  color: #36ac4d;
+  font-family: Arial;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  margin: 2px 22px 2px 22px;
+  height: 55px;
+}
+
+#researchBox p{
+  margin: 2px 0px -20px 22px;
+}
+
+#researchBox h7{
+  color: #36ac4d;
+  font-family: Arial;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  margin-right:20px;
+
+}
+
+
 
 /*--------------------------------------------------------*/
 
@@ -160,12 +199,10 @@ Header{
   height: 109px;
   width: 327px;
   border: 1px solid #36ab4c;
-  margin-top: -110px;
   margin-left: 25px;
 }
 
 #beginResearch img{
-  float:right;
   margin-right: 120px;
   margin-top:25px;
   width: 318px;

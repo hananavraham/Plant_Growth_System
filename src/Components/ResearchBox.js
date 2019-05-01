@@ -3,12 +3,21 @@ import React, { Component } from 'react';
 const ResearchBox = (props) =>{
     return(
         <div id="researchBox">
-            <img src=""></img>
+        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'></link>
+
+            <img src={props.image}></img>
             <div>
-                <label>Research Tilte</label><br></br>
-                <label>Research description</label><br></br>
-                <i className="far fa-calendar-alt"></i> Day 34 
-                <span>Running</span>
+                <i className='fas fa-cog'></i>
+                <h5>{props.name}</h5>
+                <article>{props.description}</article>
+                <p>
+                    <label><i></i><i className='far fa-calendar-alt'></i></label>
+                    <time>{props.date}</time>
+                </p>
+                
+                <span>
+                    <h7>{props.status}</h7>
+                </span>
             </div>
         </div>
     )

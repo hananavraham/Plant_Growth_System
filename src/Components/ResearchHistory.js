@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Route, Redirect } from 'react-router';
-//import { Progress } from 'reactstrap';
 import { Progress } from 'react-sweet-progress';
 import "react-sweet-progress/lib/style.css";
 import {GetResearchesByOwner} from '../Utils/getResearches';

@@ -24,5 +24,21 @@ export function GetResearchesByOwner(ownerId) {
   });
 }
 
+export function CreateNewResearch(research) {
+  return $.ajax({
+    url: "https://plantgrowthsystembackend.azurewebsites.net/Research/Create",
+    dataType: 'json',
+    type: 'POST',
+    data: research,
+    success: function(data) {
+    },
+    error: function(xhr, status, err) {
+      console.error(status, err.toString());
+    }.bind(this)
+  });
+}
+
+
+
 
 
