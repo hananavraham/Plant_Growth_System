@@ -146,7 +146,7 @@ Header{
   margin: 2px 0px -20px 22px;
 }
 
-#researchBox h7{
+#researchBox h6{
   color: #36ac4d;
   font-family: Arial;
   font-size: 12px;
@@ -156,6 +156,67 @@ Header{
 
 }
 
+
+
+/*--------------------------------------------------------*/
+
+/*--------------------- Research Page -------------------*/
+
+#researchPage{
+  width:100%;
+  height: 800px;
+}
+
+#researchPage article{
+  width: 500px;
+  height: 200px;
+  margin-left:70px;
+}
+#researchPage h2, h3{
+  color:#ffff;
+}
+
+#researchPage h3{
+  margin-top:40px;
+  font-size: 18px;
+}
+
+.line{
+  width: 220px;
+  height: 10px;
+  border-bottom: 1px solid #36ac4d;
+  float: left;
+}
+
+#researchPage i{
+  font-size:20px;
+  color: #ffff;
+  margin-left: 5px;
+}
+
+.researchContent{
+  margin: 10px 10px 10px 150px;
+  width:80%;
+  height: 500px;
+  border: 1px solid #f8f9fa;
+}
+
+.researchContent div{
+  float: right;
+  width:100px;
+  height: 50px;
+  margin: 10px 40px 5px 0;
+}
+
+.researchContent div select{
+  margin: 0 auto;
+  border: 2px solid #36ac4d;
+}
+
+.researchContent div label{
+  text-align: center;
+  color: #ffff;
+}
 
 
 /*--------------------------------------------------------*/

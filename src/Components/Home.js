@@ -22,7 +22,7 @@ class Home extends Component{
         let jsonData = GetResearchesByOwner("5c48386ae7179a5449418a67");
         this.setState({ researches : jsonData.responseJSON});
         let plants = getAllGeneralPlants();
-        this.setState({generalPlants : plants.responseJSON});
+        this.setState({generalPlants : plants.responseJSON}); 
     }
 
 
@@ -43,6 +43,7 @@ class Home extends Component{
                          image={plantImg}
                          date={ <Moment date={research.Start_date} 
                          durationFromNow></Moment>}
+                         research = {research}
                 />
           )
         });
@@ -50,19 +51,16 @@ class Home extends Component{
 
     
     render(){
+
+        if(this.state.renderResearch){
+            this.props.history.push(`/ResearchPage`);
+        }
+
         if (this.state.BeginResearch){
             return (<Redirect to={{
                 pathname: '/BeginResearch'
             }} />)
         }
-
-        if (this.state.ResearchHistory){
-            return (<Redirect to={{
-                pathname: '/ResearchHistory'
-            }} />)
-        }
-
-
 
     return (
         <div id="dashboard">

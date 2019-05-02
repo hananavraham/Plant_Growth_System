@@ -5,7 +5,6 @@ import ReactRouter from './Router/Router';
 import {BrowserRouter as Router} from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
-
 ReactDOM.render(
         // <BeginResearch/>, document.getElementById('root'));
         <Router>

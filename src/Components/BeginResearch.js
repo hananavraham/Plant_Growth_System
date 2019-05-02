@@ -33,6 +33,7 @@ class BeginResearch extends Component{
     }
 
     renderSelectPlantType() {
+        console.log('renderPlant');
         const { generalPlants} = this.state;
         return generalPlants.map(generalPlant => {
           return (
@@ -51,20 +52,27 @@ class BeginResearch extends Component{
     }
 
     updateOwner(event){
-        this.state.owners.map(owner =>{
-            if(owner.Name == event.target.value){
-                this.setState({selectedOwner : owner.Id});
-            }
-        })
+        let own = this.state.owners.filter(owner => owner.Name == event.target.value);
+        console.log("own:", own);
+        this.setState({selectedOwner : own.Id});
+        
+        // this.state.owners.map(owner =>{
+        //     if(owner.Name == event.target.value){
+        //         this.setState({selectedOwner : owner.Id});
+        //     }
+        // })
     }
 
     showPlantImage(event) {
-        this.state.generalPlants.map(plant =>{
-            if(plant.Name == event.target.value){
-                this.setState({image : plant.Image});
-                this.setState({General_plant_id : plant.Id});
-            }
-        })
+        let plant = this.state.generalPlants.filter(item => item.Name == event.target.value);
+        console.log("plant", plant);
+        this.setState({image : plant.Image, General_plant_id : plant.Id});
+        // {
+        //     if(plant.Name == event.target.value){
+        //         this.setState({image : plant.Image});
+        //         this.setState({General_plant_id : plant.Id});
+        //     }
+        // })
     }
 
     handleSubmit(event){

@@ -38,6 +38,25 @@ export function CreateNewResearch(research) {
   });
 }
 
+export function GetResearchPlants(researchId) {
+  return $.ajax({
+    url: `https://plantgrowthsystembackend.azurewebsites.net/Research/GetResearchPlants?researchId=${researchId}`,
+    dataType: "json", // type of data we're expecting from server
+    async: false // make true to avoid waiting for the request to be complete
+  });
+}
+
+
+export function AddPlantToResearch(researchId,plantId) {
+  return $.ajax({
+    url: `https://plantgrowthsystembackend.azurewebsites.net/Research/AddPlantToResearch?researchId=${researchId}&plantId=${plantId}`,
+    dataType: "json", // type of data we're expecting from server
+    async: false // make true to avoid waiting for the request to be complete
+  });
+}
+
+
+
 
 
 
