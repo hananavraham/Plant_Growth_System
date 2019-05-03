@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Redirect } from 'react-router';
+import {FaCog} from 'react-icons/fa';
+import {FaRegCalendarAlt} from 'react-icons/fa';
+import {FaRegChartBar} from 'react-icons/fa';
 
 class ResearchBox extends Component{
     constructor(props){
@@ -29,17 +32,17 @@ class ResearchBox extends Component{
             <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'></link>
                 <img src={this.props.image}></img>
                 <div>
-                    <i onClick={this.GotoResearch} className='fas fa-cog'></i>
+                    <FaCog className="cogIcon" onClick={this.GotoResearch}></FaCog>
+                    {/* <i onClick={this.GotoResearch} className='fas fa-cog'></i> */}
                     <h5>{this.props.name}</h5>
                     <article>{this.props.description}</article>
-                    <p>
-                        <label><i></i><i className='far fa-calendar-alt'></i></label>
+                    <p className="from-row">
+                        <FaRegCalendarAlt className="icons"></FaRegCalendarAlt>
+                        {/* <label><i></i><i className='far fa-calendar-alt'></i></label> */}
                         <time>{this.props.date}</time>
+                        {/* <FaRegChartBar className="icons"></FaRegChartBar> */}
                     </p>
-                    
-                    <span>
-                        <h6>{this.props.status}</h6>
-                    </span>
+                    <h6>{this.props.status}</h6>
                 </div>
             </div>
         )

@@ -13,22 +13,20 @@ class MultiSeriesGraph extends Component{
     }   
    
     render() {
-        let planTemp =[]
-        this.props.plants.map(plant=>{
-            planTemp = plant.Humidity; 
-        });
-
-        console.log('planTemp: ' ,planTemp);
+        let plan = this.props.plants[this.props.selectedPlant];
         let data = [];
 
-        planTemp.forEach(element => {
-            data.push({Date: element.Date, Humidity: element._Humidity, Temperature: element._Humidity + 35,amt: 10,});
-        });
-
+        if(plan != null){
+            const size = plan.Humidity.length;
+            for(let i=0; i < size ; ++i ){
+                data.push({Date: plan.Humidity[i].Date,Humidity: plan.Humidity[i]._Humidity, Temperature: plan.Temperature[i]._Temperature,amt: 10});
+            }
+        }
+        
         console.log("data:", data);
         return (
         <LineChart
-            width={900}
+            width={950}
             height={450}
             data={data}
             margin={{

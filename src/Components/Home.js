@@ -30,23 +30,25 @@ class Home extends Component{
     renderResearches() {
         let plantImg = "";
         const { researches} = this.state;
-        return researches.map(research => {
-            this.state.generalPlants.map(plant =>{
-                if(plant.Id == research.General_plant_id){
-                    plantImg = plant.Image;
-                }
-            })
-            return (
-                <ResearchBox name={research.Name} 
-                         description={research.Description} 
-                         status={research.Status}
-                         image={plantImg}
-                         date={ <Moment date={research.Start_date} 
-                         durationFromNow></Moment>}
-                         research = {research}
-                />
-          )
-        });
+        if(researches != null){
+            return researches.map(research => {
+                this.state.generalPlants.map(plant =>{
+                    if(plant.Id == research.General_plant_id){
+                        plantImg = plant.Image;
+                    }
+                })
+                return (
+                    <ResearchBox name={research.Name} 
+                            description={research.Description} 
+                            status={research.Status}
+                            image={plantImg}
+                            date={ <Moment date={research.Start_date} 
+                            durationFromNow></Moment>}
+                            research = {research}
+                    />
+            )
+            });
+        }   
       }
 
     

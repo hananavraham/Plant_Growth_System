@@ -33,46 +33,44 @@ class BeginResearch extends Component{
     }
 
     renderSelectPlantType() {
-        console.log('renderPlant');
         const { generalPlants} = this.state;
-        return generalPlants.map(generalPlant => {
-          return (
-            <option>{generalPlant.Name}</option>
-          )
-        });
+        if(generalPlants != null){
+            return generalPlants.map(generalPlant => {
+                return (
+                  <option>{generalPlant.Name}</option>
+                )
+            });
+        }
     }
 
     renderSelectOwners() {
         const { owners} = this.state;
-        return owners.map(owner => {
-          return (
-            <option>{owner.Name}</option>
-          )
-        }); 
+        if(owners != null){
+            return owners.map(owner => {
+                return (
+                  <option>{owner.Name}</option>
+                )
+            }); 
+        }
     }
 
-    updateOwner(event){
-        let own = this.state.owners.filter(owner => owner.Name == event.target.value);
-        console.log("own:", own);
-        this.setState({selectedOwner : own.Id});
-        
-        // this.state.owners.map(owner =>{
-        //     if(owner.Name == event.target.value){
-        //         this.setState({selectedOwner : owner.Id});
-        //     }
-        // })
+    updateOwner(event){       
+        this.state.owners.map(owner =>{
+            if(owner.Name == event.target.value){
+                this.setState({selectedOwner : owner.Id});
+            }
+        })
     }
 
     showPlantImage(event) {
-        let plant = this.state.generalPlants.filter(item => item.Name == event.target.value);
-        console.log("plant", plant);
-        this.setState({image : plant.Image, General_plant_id : plant.Id});
-        // {
-        //     if(plant.Name == event.target.value){
-        //         this.setState({image : plant.Image});
-        //         this.setState({General_plant_id : plant.Id});
-        //     }
-        // })
+        this.state.generalPlants.map(plant=>{
+            if(plant.Name == event.target.value){
+                this.setState({image : plant.Image});
+                this.setState({General_plant_id : plant.Id});
+            }
+        })
+            
+
     }
 
     handleSubmit(event){
@@ -111,11 +109,12 @@ class BeginResearch extends Component{
                         <div className="form-group">
                             <label>Plant Type</label>
                             <select id="plantType" required onChange={this.showPlantImage} className="form-control">
+                                <option></option>
                                 {this.renderSelectPlantType()}
                             </select>                    
                         </div>
                         <div className="form-group">
-                            <input type="number" required className="form-control" ref="number_of_plants" placeholder="Number Of Plants"></input>
+                            <input type="number" required className="form-control" min='1' ref="number_of_plants" placeholder="Number Of Plants"></input>
                         </div>
                         <div className="form-group">
                             <input type="date" required className="form-control" ref="start_date" placeholder="Start Date"></input>
@@ -125,6 +124,7 @@ class BeginResearch extends Component{
                         <div className="form-group">
                             <label>Add Owners</label>
                             <select className="form-control" onChange={this.updateOwner}>
+                                <option></option>
                                 {this.renderSelectOwners()}
                             </select>
                         </div>

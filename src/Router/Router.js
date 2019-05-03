@@ -1,14 +1,12 @@
 import React                                    from "react";
 import {Route}                                  from 'react-router-dom';
 import Home                                     from '../Components/Home';
-import Plant                                    from '../Components/Plant';
 import Header                                   from '../Components/Header';
 import FooterPage                               from '../Components/Footer';
 import BeginResearch                            from '../Components/BeginResearch';
 import ResearchHistory                          from '../Components/ResearchHistory';
 import ResearchPage                             from '../Components/ResearchPage';
-import Table                                    from '../Components/Table';
-import MultiSeriesGraph                         from '../Components/MultiSeriesGraph';
+import Login                                    from '../Components/Login';
 
 
 
@@ -17,13 +15,11 @@ const ReactRouter = () =>{
         <React.Fragment>
             <div>
                 <Header></Header>
-                    <Route path='/Plant' exact component={Plant} name="Plant Type"></Route>
                     <Route path='/Home' component={Home} name="Home"></Route>
-                    <Route path='/Table' component={Table} name="Table"></Route>
+                    <Route path='/Login' component={Login} name="Login"></Route>
                     <Route path='/BeginResearch' component={BeginResearch} name="Begin Research"></Route>
                     <Route path='/ResearchHistory' component={ResearchHistory} name="Research History"></Route>
                     <Route path='/ResearchPage' component={ResearchPage} name="Research Details"></Route>
-                    <Route path='/MultiSeriesGraph' component={MultiSeriesGraph} name="MultiSeriesGraph"></Route>   
                 <FooterPage></FooterPage>                   
             </div>
         </React.Fragment>

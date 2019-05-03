@@ -22,16 +22,19 @@ class ResearchPage extends Component{
     renderSelectPlant() {
         const { plants} = this.state;
         let i = 0;
-        return plants.map(plant => {
-            ++ i;
-          return (
-            <option>{i}</option>
-          )
-        });
+        if(plants != null){
+            return plants.map(plant => {
+                ++ i;
+              return (
+                <option>{i}</option>
+              )
+            });
+        }
+        
     }
 
     showPlantRecords(event){
-        console.log("event:", event);
+        this.setState({selectedPlant: event.target.value -1});
         /* need to show the current plant */
     }
 
@@ -53,12 +56,21 @@ class ResearchPage extends Component{
                     <div className="form-group">
                         <label>Choose Plant</label>
                         <select onChange={this.showPlantRecords} className="form-control">
+                            <option></option>
                             {this.renderSelectPlant()}
                         </select>                    
                     </div>
-                    <input type="date" name="start_date"></input>
-                    <input type="date" name="end_date"></input>
-                    <MultiSeriesGraph plants={this.state.plants}/>
+                    <p>
+                        <label>End Date</label>
+                        <input type="date" name="start_date"></input>
+                    </p>
+                    <p>
+                        <label>Start Date</label>
+                        <input type="date" name="end_date"></input>
+                    </p>
+                    
+                    <MultiSeriesGraph plants={this.state.plants} 
+                                      selectedPlant={this.state.selectedPlant}/>
                 </div>
                 
 
