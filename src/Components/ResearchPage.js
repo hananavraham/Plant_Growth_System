@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Redirect } from 'react-router';
 import MultiSeriesGraph from './MultiSeriesGraph';
 import {GetResearchPlants} from '../Utils/getResearches';
+import {FaCog} from 'react-icons/fa';
 
 class ResearchPage extends Component{
     constructor(props){
@@ -43,11 +44,21 @@ class ResearchPage extends Component{
             <div id="researchPage">
                 <h1>Research Report</h1>
                 <article>
+                    <select><FaCog className="cogIcon" onClick=""></FaCog>
+                        <option>Stop Research</option>
+                        <option></option>
+                        <option></option>
+                    </select>
                     <i className='fas fa-paperclip'></i>
                     <h2>{this.props.location.state.research.Name}</h2>
                     <div className="line"></div>
                     <h3>{this.props.location.state.research.Description}</h3>
                     <div className="line"></div>.<div className="line"></div>
+                </article>
+                <article id="plantDetails">
+                    <label>Status:</label><label>Running</label>
+                    <label>Frequency_of_measurement</label><label>2 hours</label>
+                    <label>Frequency_of_upload</label><label>2 hours</label>
                 </article>
                 <div className="researchContent">
                     <button>Graph1</button>

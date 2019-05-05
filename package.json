@@ -10,6 +10,7 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-icons": "^3.6.1",
+    "react-image-scroller": "^0.3.0",
     "react-moment": "^0.9.2",
     "react-redux": "^7.0.3",
     "react-router": "^4.3.1",

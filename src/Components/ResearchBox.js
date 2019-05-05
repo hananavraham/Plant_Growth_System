@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route, Redirect } from 'react-router';
 import {FaCog} from 'react-icons/fa';
 import {FaRegCalendarAlt} from 'react-icons/fa';
-import {FaRegChartBar} from 'react-icons/fa';
 
 class ResearchBox extends Component{
     constructor(props){
@@ -29,10 +28,9 @@ class ResearchBox extends Component{
 
         return(
             <div id="researchBox">
-            <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'></link>
                 <img src={this.props.image}></img>
                 <div>
-                    <FaCog className="cogIcon" onClick={this.GotoResearch}></FaCog>
+                    <FaCog class="cogIcon" onClick={this.GotoResearch}></FaCog>
                     {/* <i onClick={this.GotoResearch} className='fas fa-cog'></i> */}
                     <h5>{this.props.name}</h5>
                     <article>{this.props.description}</article>

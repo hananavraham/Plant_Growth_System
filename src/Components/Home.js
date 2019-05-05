@@ -4,25 +4,43 @@ import Moment from 'react-moment';
 import ResearchBox from './ResearchBox';
 import {GetResearchesByOwner} from '../Utils/getResearches';
 import {getAllGeneralPlants} from '../Utils/getGeneralPlants';
- 
+
 class Home extends Component{
 
     constructor (props) {
         super(props);
         this.state ={
-            BeginResearch: false,
-            ResearchHistory: false,
             researches : [],
-            generalPlants : []
+            generalPlants : [],
+            properties : [],
+            property : {},
+            currentIndex : 0
         }
+
+        this.nextProperty = this.nextProperty.bind(this);
+        this.prevProperty = this.prevProperty.bind(this);
+    }
+
+  
+    nextProperty(){
+        this.setState({currentIndex: this.state.currentIndex +1});
+        this.setState({property : this.state.properties[this.state.currentIndex]});
+        console.log('newIndex:',this.state.currentIndex);
+    }
+
+    prevProperty(){
+        this.setState({currentIndex: this.state.currentIndex -1});
+        this.setState({property : this.state.properties[this.state.currentIndex]});
+        console.log('newIndex:', this.state.currentIndex);
     }
 
     componentDidMount()
     {
-        let jsonData = GetResearchesByOwner("5c48386ae7179a5449418a67");
+        let jsonData = GetResearchesByOwner(this.props.location.state.userId);
         this.setState({ researches : jsonData.responseJSON});
         let plants = getAllGeneralPlants();
         this.setState({generalPlants : plants.responseJSON}); 
+        this.setState({properties : this.state.researches, property : this.state.researches[0]});
     }
 
 
@@ -46,7 +64,7 @@ class Home extends Component{
                             durationFromNow></Moment>}
                             research = {research}
                     />
-            )
+                )
             });
         }   
       }
@@ -58,14 +76,10 @@ class Home extends Component{
             this.props.history.push(`/ResearchPage`);
         }
 
-        if (this.state.BeginResearch){
-            return (<Redirect to={{
-                pathname: '/BeginResearch'
-            }} />)
-        }
-
-    return (
+    return (       
         <div id="dashboard">
+            <button onClick={this.nextProperty}>Next</button>
+            <button onClick={this.prevProperty}>Prev</button>
             <div className="input-group md-form form-sm form-1 pl-0">
                 <div className="input-group-prepend">
                     <span className="input-group-text purple lighten-3" id="basic-text1"><i className="fas fa-search text-white"
@@ -76,7 +90,7 @@ class Home extends Component{
             <div id="boxes">
                 <ResearchBox name="Create New Research" 
                          image="./images/plus.jpg"
-                />
+                />                      
                 {this.renderResearches()}
             </div>
         </div>
