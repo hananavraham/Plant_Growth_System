@@ -1,5 +1,4 @@
 import $ from "jquery";
-import {axios} from 'axios';
 
 export function CheckUser(user) {
     return $.ajax({
@@ -7,6 +6,7 @@ export function CheckUser(user) {
       dataType: 'json',
       type: 'POST',
       data: user,
+      async: true,
       success: function(data) {
       },
       error: function(xhr, status, err) {

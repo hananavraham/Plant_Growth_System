@@ -1,7 +1,7 @@
 body {
-  margin: 0 auto;
+  /* margin: 0 auto; */
   padding: 0;
-  width:1280px;
+  width:100%;
   height: 900px;
   /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -26,7 +26,7 @@ h1{
 
 
 #root{
-  background-image: url(./public/images/background.png);
+  background-image: url(./public/images/background1.png);
   background-repeat: no-repeat;
   width:100%;
   height: 900px;
@@ -113,6 +113,11 @@ header i{
   color:#ffff;
   margin-right: 20px;
 }
+
+.active{
+  color:#36ac4d;
+}
+
 /*--------------------------------------------------------*/
 
 
@@ -131,6 +136,33 @@ header i{
   border: 1px solid #36ab4c;
   background-color: #ffffff;
 }
+
+#boxes{
+  margin: 0 auto;
+  display: flex;
+  flex-direction: left;
+  flex-wrap: wrap;
+  width:80%;
+}
+
+#boxes a{
+  height: 45px;
+  margin: 0 auto;
+  top:200px;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #f1f1f1;
+  border-radius: 30px;
+  position: relative;
+}
+
+#boxes a:hover {
+  background-color: #4CAF50;
+  color: black;
+}
+
 /*--------------------------------------------------------*/
 
 /*---------------------- Research Box --------------------*/
@@ -140,7 +172,7 @@ header i{
   height: 293px;
   border: 1px solid #30d36a;
   margin-left: 28px;
-  margin-top: 80px;
+  margin-top: 80px;  
 }
 
 .plus{
@@ -176,12 +208,6 @@ header i{
   margin-right: 5px;
 }
 
-#boxes{
-  display: flex;
-  flex-direction: left;
-  position: absolute;
-}
-
 #researchBox h5{
   font-family: Arial;
   font-size: 20px;
@@ -208,13 +234,25 @@ header i{
 }
 
 #researchBox h6{
-  color: #36ac4d;
+  font-weight: bold;
   font-family: Arial;
   font-size: 12px;
-  font-weight: 400;
   line-height: 18px;
   margin-right:20px;
   float: right;
+  display: inline-block;
+}
+
+#researchBox .plus{
+  width: 247px;
+  height: 133px;
+  background-color: #36ab4c;
+}
+
+#researchBox .plus h3{
+  font-size: 110px;
+  text-align: center;
+  background-color: #36ab4c;
 }
 
 
@@ -255,12 +293,46 @@ header i{
   margin-left: 5px;
 }
 
+.dropbtn {
+  background-image: url(./public/images/conf.png);
+  background-repeat: no-repeat;
+  width: 16px;
+  height: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
 .researchContent{
-  margin: 10px 10px 10px 150px;
+  margin: 40px 10px 10px 150px;
   width:80%;
-  height: 500px;
+  height: 520px;
   border: 1px solid #f8f9fa;
 }
+
 
 .researchContent div{
   float: right;
@@ -291,6 +363,20 @@ header i{
   margin: 5px 30px 0 0;
 }
 
+.recharts-legend-item-text{
+  color:#ffff;
+}
+
+
+#plantDetails{
+  text-align: center;
+  color:#ffff;
+  border: 1px solid #689175;
+}
+
+#plantDetails label{
+  font-weight: 500;
+}
 
 /*--------------------------------------------------------*/
 
@@ -325,6 +411,10 @@ header i{
   height: 48px;
 }
 
+#beginResearch .date{
+  width:180px;
+}
+
 #beginResearch .number_of_plants{
   width:155px;
 }
@@ -334,6 +424,9 @@ header i{
   width: 327px;
   border: 1px solid #36ab4c;
   margin-left: 25px;
+  position: relative;
+  float: left;
+  bottom: 140px;
 }
 
 #beginResearch img{
@@ -350,7 +443,13 @@ header i{
   width: 96px;
   height: 48px;
   border: 2px solid #36ab4c;
-  margin-top:80px;
+  /* margin-top:80px; */
+}
+
+#beginResearch .secondDiv{
+  width:100%;
+  height: 200px;
+  margin-top:-100px;
 }
 
 /*--------------------------------------------------------*/

@@ -3,7 +3,7 @@ import { Route, Redirect }  from 'react-router';
 import { FaUserAlt } from 'react-icons/fa';
 import {FaLock} from 'react-icons/fa';
 import {CheckUser} from '../Utils/getUsers';
-import $ from "jquery";
+
 
 class Login extends Component{
     constructor (props) {
@@ -54,6 +54,7 @@ class Login extends Component{
         };
         var userId = await CheckUser(user);
         this.setState({userId : userId});
+        localStorage.setItem('userId', userId);
     }
 }
  

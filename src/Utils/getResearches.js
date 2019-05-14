@@ -30,6 +30,7 @@ export function CreateNewResearch(research) {
     dataType: 'json',
     type: 'POST',
     data: research,
+    async: false,
     success: function(data) {
     },
     error: function(xhr, status, err) {

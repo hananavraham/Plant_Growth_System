@@ -25,22 +25,29 @@ class ResearchBox extends Component{
                 state: {research :this.props.research} 
             }} />)
         }
-
+        const styles = {
+            container: {
+                color: null
+            }
+        };
+        if (this.props.status == 'Pending'){
+            styles.container.color = '#ac6236';
+        }
+        else{
+            styles.container.color = '#36ac4d';
+        }
         return(
             <div id="researchBox">
                 <img src={this.props.image}></img>
                 <div>
                     <FaCog class="cogIcon" onClick={this.GotoResearch}></FaCog>
-                    {/* <i onClick={this.GotoResearch} className='fas fa-cog'></i> */}
                     <h5>{this.props.name}</h5>
                     <article>{this.props.description}</article>
                     <p className="from-row">
                         <FaRegCalendarAlt className="icons"></FaRegCalendarAlt>
-                        {/* <label><i></i><i className='far fa-calendar-alt'></i></label> */}
                         <time>{this.props.date}</time>
-                        {/* <FaRegChartBar className="icons"></FaRegChartBar> */}
                     </p>
-                    <h6>{this.props.status}</h6>
+                    <h6 style={styles.container}>{this.props.status}</h6>
                 </div>
             </div>
         )

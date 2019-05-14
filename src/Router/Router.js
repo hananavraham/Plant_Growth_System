@@ -9,12 +9,12 @@ import ResearchPage                             from '../Components/ResearchPage
 import Login                                    from '../Components/Login';
 
 
-
 const ReactRouter = () =>{
     return (
-        <React.Fragment>
+        // <React.Fragment>
             <div>
                 <Header></Header>
+                    <Route exact path="/" component={Login}></Route>
                     <Route path='/Home' component={Home} name="Home"></Route>
                     <Route path='/Login' component={Login} name="Login"></Route>
                     <Route path='/BeginResearch' component={BeginResearch} name="Begin Research"></Route>
@@ -22,7 +22,7 @@ const ReactRouter = () =>{
                     <Route path='/ResearchPage' component={ResearchPage} name="Research Details"></Route>
                 <FooterPage></FooterPage>                   
             </div>
-        </React.Fragment>
+        // </React.Fragment>
     );
 }
 

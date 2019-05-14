@@ -29,3 +29,17 @@ export function CreateNewPlant(plant) {
     }.bind(this)
   });
 }
+
+export function CreatePlantsToResearch(researchId,plant) {
+  return $.ajax({
+    url: "https://plantgrowthsystembackend.azurewebsites.net/Plant/createPlantAndAddControlPlan",
+    dataType: 'json',
+    type: 'POST',
+    data: {researchId, plant},
+    success: function(data) {
+    },
+    error: function(xhr, status, err) {
+      console.error(status, err.toString());
+    }.bind(this)
+  });
+}
