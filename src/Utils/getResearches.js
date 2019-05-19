@@ -57,6 +57,15 @@ export function AddPlantToResearch(researchId,plantId) {
 }
 
 
+export function StopOrContinueResearch(researchId,status){
+  return $.ajax({
+    url: `https://plantgrowthsystembackend.azurewebsites.net/Research/StopOrContinueResearch?id=${researchId}&status=${status}`,
+    dataType: "json", // type of data we're expecting from server
+    async: false // make true to avoid waiting for the request to be complete
+  })
+}
+
+
 
 
 

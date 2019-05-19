@@ -48,8 +48,14 @@ class Home extends Component{
 
     componentDidMount()
     {
-        let jsonData = GetResearchesByOwner(this.props.location.state.userId);
-        this.setState({ researches : jsonData.responseJSON, userId:this.props.location.state.userId});
+        var userId = localStorage.getItem('userId');
+        let jsonData = {};
+        try{
+            jsonData = GetResearchesByOwner(userId);
+
+        }
+        catch{}
+        this.setState({ researches : jsonData.responseJSON, userId:userId});
         let plants = getAllGeneralPlants();
         this.setState({generalPlants : plants.responseJSON}); 
     }
@@ -106,7 +112,7 @@ class Home extends Component{
                     {/* <button className="round" onClick={this.prevProperty}>Prev</button> */}
                     <a onClick={this.prevProperty} className="previous round">&#8249;</a>
 
-                    <AddNewResearch userId={this.props.location.state.userId}></AddNewResearch>
+                    <AddNewResearch userId={this.state.userId}></AddNewResearch>
                     {this.renderResearches()}
                     <a onClick={this.nextProperty} className="next round">&#8250;</a>
                     {/* <button onClick={this.nextProperty}>Next</button> */}

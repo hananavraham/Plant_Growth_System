@@ -3,7 +3,7 @@ import { Route, Redirect }  from 'react-router';
 import { FaUserAlt } from 'react-icons/fa';
 import {FaLock} from 'react-icons/fa';
 import {CheckUser} from '../Utils/getUsers';
-
+import Noty from 'noty';
 
 class Login extends Component{
     constructor (props) {
@@ -17,17 +17,25 @@ class Login extends Component{
 
    
     render(){
-        if(this.state.userId != null){
+        if(this.state.userId != null && this.state.userId != 'error'){
             return (<Redirect to={{
                 pathname: '/Home',
                 state: {userId :this.state.userId} 
             }} />)
         }
+
+        else if(this.state.userId == 'error') {
+                new Noty({
+                    type: 'error',
+                    layout: 'topRight',
+                    text: 'Wrong User name or Password',
+                    timeout: 3000
+                }).show();
+        }
+
         
         return (
             <div id="login">
-            <div id="response">
-            </div>
                 <h1>Login</h1>
                 <form onSubmit={this.checkUserAuth}>
                     <label>Email:</label>
@@ -52,9 +60,17 @@ class Login extends Component{
             email : this.refs.email.value,
             password : this.refs.password.value
         };
-        var userId = await CheckUser(user);
-        this.setState({userId : userId});
-        localStorage.setItem('userId', userId);
+        try{
+            var userId = await CheckUser(user);
+            localStorage.setItem('userId', userId);
+            this.setState({userId : userId});     
+        }
+
+        catch{
+            this.setState({userId : 'error'});   
+        }
+        
+        
     }
 }
  

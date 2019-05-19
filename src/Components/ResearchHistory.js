@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Route, Redirect } from 'react-router';
 import { Progress } from 'react-sweet-progress';
+import "react-sweet-progress/lib/style.css";
 import {GetResearchesByOwner} from '../Utils/getResearches';
+import Moment from 'react-moment';
 
 
 class ResearchHistory extends Component{
@@ -15,16 +17,16 @@ class ResearchHistory extends Component{
         }
 
         this.handleClick = this.handleClick.bind(this);
+        this.checkStatus = this.checkStatus.bind(this);
     }
 
     componentDidMount(){
         // let jsonData = GetResearchesByOwner("5c48386ae7179a5449418a67");
-        const userId = "5c48386ae7179a5449418a67";
+        const userId = localStorage.getItem('userId');
         const url = "https://plantgrowthsystembackend.azurewebsites.net/Research/GetResearchesByOwner?ownerId=" + userId;
         fetch(url, {
             method: "GET"
         }).then(response => response.json()).then(researches=> {
-            console.log(researches);
             this.setState({ researches : researches});
         });
         //this.setState({ researches : jsonData.responseJSON});
@@ -39,25 +41,45 @@ class ResearchHistory extends Component{
         const { researches} = this.state;
         if(researches != null){
             return researches.map((research,index) => {
-
+                
                 return (
                     <tr>
                         <td scope="row">{index}</td>
                         <td>{research.Name}</td>
                         <td>{research.Description}</td>
-                        <td>
-                            <Progress
+                        <td>  
+                            {this.checkStatus(research)}                         
+                            {/* <Progress
                                 type="circle"
-                                width={60}
+                                width={30}
                                 percent={30}
-                            />
+                            /> */}
                         </td>
                         <td><button onClick={() => this.handleClick(index)} className="btn btn-info">Go To Research</button></td>   
                     </tr>
                 )
             });
         }
-      }
+    }
+
+    checkStatus(research){
+
+        switch(research.Status){
+            case 'Running':
+                var start = new Date(research.Start_date).toLocaleDateString();
+                var end = new Date(research.End_date).toLocaleDateString();
+                return (<Moment duration={start} date={end}></Moment>)
+
+            case 'Pending':
+                return(<Progress type="circle" width={60} status="warning" />)
+
+            case 'Complete':
+                return(<Progress type="circle" percent={100} width={60} status="success" />)
+
+            case 'Stop':
+                return('Stop');
+        }
+    }
 
     render(){
         const { researches} = this.state;

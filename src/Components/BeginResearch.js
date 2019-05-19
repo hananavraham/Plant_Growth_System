@@ -6,6 +6,7 @@ import {CreateNewResearch} from '../Utils/getResearches';
 import {getResearchByID} from '../Utils/getResearches';
 import { readExcelFile } from "../Utils/readExcelFile";
 import {ExcelRenderer} from 'react-excel-renderer';
+import Noty from 'noty';
 
 
 class BeginResearch extends Component{
@@ -22,7 +23,8 @@ class BeginResearch extends Component{
             End_date : null,
             General_plant_id : null,
             Number_of_plants : 0,
-            files : null
+            files : null,
+            goBack: false
         }
         this.showPlantImage = this.showPlantImage.bind(this);
         this.updateOwner    = this.updateOwner.bind(this);
@@ -117,17 +119,41 @@ class BeginResearch extends Component{
             Plants_id : []
         };
 
-            let newResearch = (CreateNewResearch(research)).responseJSON;
-            console.log('new research:', newResearch);
+            try{
+                let newResearch = (CreateNewResearch(research)).responseJSON;
+                research.Id = newResearch.Id;
+                this.uploadFile(newResearch.Id,this.state.files);
 
-            research.Id = newResearch.Id;
+                var new_research = (getResearchByID(research.Id)).responseJSON;
+
+                console.log('final research',new_research);
+
+                new Noty({
+                    type: 'success',
+                    layout: 'topRight',
+                    text: 'Research Successfully created',
+                    timeout: 3000
+                }).show();
+
+
+
+                this.setState({research :new_research});
+            }
+
+            catch{ 
+                new Noty({
+                    type: 'error',
+                    layout: 'topRight',
+                    text: 'Research was not created!',
+                    timeout: 3000
+                }).show();
+
+
+            }
+
             
-            this.uploadFile(newResearch.Id,this.state.files);
-
-            var new_research = getResearchByID(research.Id);
-            console.log('final research',new_research);
-
-            this.setState({research :new_research});
+            
+            
     }
 
 
@@ -138,6 +164,14 @@ class BeginResearch extends Component{
                 state: {research :this.state.research} 
             }} />)
         }
+
+        else if(this.state.goBack){
+            return (<Redirect to={{
+                pathname: '/Home',
+                state: {userId :localStorage.getItem('userId')} 
+            }} />)
+        }
+
         return (
             <div id="beginResearch">
                 <h1>Create New Research</h1>
@@ -180,10 +214,12 @@ class BeginResearch extends Component{
                             </div>
                         </div>
                     </div> 
-                    <input type="file" required onChange={(e)=>this.saveFile(e)} ref="file"></input>
+                    <label>Upload Control Plan File:</label>
+                    <input className="fileBox" type="file" required onChange={(e)=>this.saveFile(e)} ref="file"></input>
                     <div className="form-group">
                         <div className="col-sm-10">
-                            <button type="submit" className="btn">Next</button>
+                            <button id="goBack" onClick={()=>this.setState({goBack: true})} className="btn">Back</button>
+                            <button type="submit" className="btn">Create</button>
                         </div>
                     </div>
                 </form>

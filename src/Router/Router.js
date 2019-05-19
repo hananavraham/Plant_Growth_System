@@ -7,6 +7,7 @@ import BeginResearch                            from '../Components/BeginResearc
 import ResearchHistory                          from '../Components/ResearchHistory';
 import ResearchPage                             from '../Components/ResearchPage';
 import Login                                    from '../Components/Login';
+import {PrivateRoute}                           from "../Components/PrivateRoute";
 
 
 const ReactRouter = () =>{
@@ -14,13 +15,12 @@ const ReactRouter = () =>{
         // <React.Fragment>
             <div>
                 <Header></Header>
-                    <Route exact path="/" component={Login}></Route>
-                    <Route path='/Home' component={Home} name="Home"></Route>
-                    <Route path='/Login' component={Login} name="Login"></Route>
-                    <Route path='/BeginResearch' component={BeginResearch} name="Begin Research"></Route>
-                    <Route path='/ResearchHistory' component={ResearchHistory} name="Research History"></Route>
-                    <Route path='/ResearchPage' component={ResearchPage} name="Research Details"></Route>
-                <FooterPage></FooterPage>                   
+                    <Route exact path="/Login" component={Login}></Route>
+                    <PrivateRoute exact path="/" component={Login}></PrivateRoute>
+                    <PrivateRoute path='/Home' component={Home} name="Home"></PrivateRoute>
+                    <PrivateRoute path='/BeginResearch' component={BeginResearch} name="Begin Research"></PrivateRoute>
+                    <PrivateRoute path='/ResearchHistory' component={ResearchHistory} name="Research History"></PrivateRoute>
+                    <PrivateRoute path='/ResearchPage' component={ResearchPage} name="Research Details"></PrivateRoute>                <FooterPage></FooterPage>                   
             </div>
         // </React.Fragment>
     );

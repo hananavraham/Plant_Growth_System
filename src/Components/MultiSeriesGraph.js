@@ -15,17 +15,29 @@ class MultiSeriesGraph extends Component{
    
     render() {
         let controlPlan = {};
-        let plan = this.props.plants[this.props.selectedPlant];
-        if(plan){
-            controlPlan = (getControlPlanByPlantId(plan.Id)).responseJSON;          
+        let plan = null;
+        try{
+            plan = this.props.plants[this.props.selectedPlant];
+            if(plan){
+                controlPlan = (getControlPlanByPlantId(plan.Id)).responseJSON;          
+            }
         }
+        catch{}
+        
         let data = [];
 
-        if(plan != null){
+        if(plan != null && plan.Humidity){
             const size = plan.Humidity.length;
             for(let i=0; i < size ; ++i ){
-                data.push({Date: plan.Humidity[i].Date,Humidity: plan.Humidity[i]._Humidity, Light: plan.Light[i]._Light,
-                    minHum: controlPlan.Intervals[0].min_Humidity, maxHum:controlPlan.Intervals[0].max_Humidity ,amt: 10});
+                var date = new Date(plan.Humidity[i].Date).toLocaleDateString();
+                try{
+                    if(date >= this.props.start_date && date <= this.props.end_date){
+                        data.push({Date: plan.Humidity[i].Date,Humidity: plan.Humidity[i]._Humidity, Light: plan.Light[i]._Light,
+                            minHum: controlPlan.Intervals[0].min_Humidity, maxHum:controlPlan.Intervals[0].max_Humidity ,amt: 10});
+                    }    
+                }
+                catch{}
+                     
             }
         }
         return (

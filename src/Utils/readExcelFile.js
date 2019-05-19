@@ -53,6 +53,5 @@ export function readExcelFile(researchId,cols,rows){
         Frequency_of_upload : Frequency_of_upload,
         Intervals : intervals
     }
-    console.log(plant);
     CreatePlantsToResearch(researchId,plant);
 }

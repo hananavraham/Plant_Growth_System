@@ -39,6 +39,7 @@ h1{
   background-repeat: no-repeat;
 }
 
+
 /*--------------------- Login ---------------------------*/
 #login{
   margin:0 auto;
@@ -118,6 +119,16 @@ header i{
   color:#36ac4d;
 }
 
+#logoutButton{
+  background-color: none;
+  margin-right: 20px;
+  border-radius: 10px;
+}
+
+#logoutButton:hover{
+  background-color: #007bff;
+}
+
 /*--------------------------------------------------------*/
 
 
@@ -138,16 +149,17 @@ header i{
 }
 
 #boxes{
-  margin: 0 auto;
+  /* margin: 0 auto; */
   display: flex;
   flex-direction: left;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   width:80%;
 }
 
 #boxes a{
   height: 45px;
   margin: 0 auto;
+  margin-left: 15px;
   top:200px;
   text-decoration: none;
   font-weight: bold;
@@ -179,6 +191,7 @@ header i{
   color:#ffff;
   width: 30px;
   height: 30px;
+  cursor: pointer;
 }
 
 #researchBox img{
@@ -200,6 +213,7 @@ header i{
 #researchBox .cogIcon{
   float: right;
   margin:5px;
+  cursor: pointer;
 }
 
 #researchBox span{
@@ -266,11 +280,39 @@ header i{
   height: 800px;
 }
 
-#researchPage article{
-  width: 500px;
-  height: 100px;
-  margin-left:70px;
+#researchPage div:nth-child(1){
+  width:100%;
 }
+
+#researchPage article{
+  /* width: 500px; */
+  height: 100px;
+  margin-left:40px;
+  width:40%;
+}
+
+
+#researchPage article:nth-child(2){
+  color:#ffff;
+  font-size: 18px;
+  width:180px;
+  margin-left:20px;
+}
+
+#researchPage article:nth-child(3){
+  margin-left:20px;
+  max-width:300px;
+}
+
+
+
+/* #researchPage article:nth-child(2){
+  color:#ffff;
+  font-size: 18px;
+  border: 1px solid #689175;
+  width:200px;  
+} */
+
 #researchPage h2, h3{
   color:#ffff;
 }
@@ -281,7 +323,7 @@ header i{
 }
 
 .line{
-  width: 220px;
+  width: 250px;
   height: 10px;
   border-bottom: 1px solid #36ac4d;
   float: left;
@@ -294,16 +336,20 @@ header i{
 }
 
 .dropbtn {
-  background-image: url(./public/images/conf.png);
-  background-repeat: no-repeat;
-  width: 16px;
-  height: 16px;
+  width: 30px;
+  height: 30px;
   border: none;
+  border-radius: 15px;
+  margin-left: 40px;
 }
 
 .dropdown {
+
   position: relative;
   display: inline-block;
+  right:5px;
+  border: none;
+  background: none;
 }
 
 .dropdown-content {
@@ -376,6 +422,8 @@ header i{
 
 #plantDetails label{
   font-weight: 500;
+  margin:3px;
+
 }
 
 /*--------------------------------------------------------*/
@@ -443,7 +491,14 @@ header i{
   width: 96px;
   height: 48px;
   border: 2px solid #36ab4c;
+  margin-top: 40px;
+  background-color: Transparent;
+  color:#ddd;
   /* margin-top:80px; */
+}
+
+#beginResearch button:hover{
+  background-color: #36ab4c;
 }
 
 #beginResearch .secondDiv{
@@ -451,6 +506,19 @@ header i{
   height: 200px;
   margin-top:-100px;
 }
+
+#beginResearch .fileBox{
+  border: none;
+}
+
+#beginResearch #goBack{
+  float: left;
+  margin-left:5px;
+}
+/* 
+#beginResearch #goBack:hover{
+  background-color: #ab6136;
+} */
 
 /*--------------------------------------------------------*/
 
@@ -496,13 +564,14 @@ header i{
   color: #ffffff;
 }
 
+#research_history .react-sweet-progress-circle-outer{
+  margin: 0 auto;
+}
+
 
 #research_history .table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n) > th {
   background-color: #689175;
 }
-
-
-
 
 #research_history button{
   border-radius: 10px;

@@ -8,9 +8,10 @@ export function CheckUser(user) {
       data: user,
       async: true,
       success: function(data) {
+        console.log('success');
       },
       error: function(xhr, status, err) {
-        console.error(status, err.toString());
+        console.log('error');
       }
     });
   }
