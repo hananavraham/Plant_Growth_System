@@ -16,7 +16,7 @@ const ReactRouter = () =>{
             <div>
                 <Header></Header>
                     <Route exact path="/Login" component={Login}></Route>
-                    <PrivateRoute exact path="/" component={Login}></PrivateRoute>
+                    <PrivateRoute exact path="/" component={Home}></PrivateRoute>
                     <PrivateRoute path='/Home' component={Home} name="Home"></PrivateRoute>
                     <PrivateRoute path='/BeginResearch' component={BeginResearch} name="Begin Research"></PrivateRoute>
                     <PrivateRoute path='/ResearchHistory' component={ResearchHistory} name="Research History"></PrivateRoute>

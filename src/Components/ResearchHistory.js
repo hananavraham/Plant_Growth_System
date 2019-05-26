@@ -2,8 +2,12 @@ import React, { Component } from "react";
 import { Route, Redirect } from 'react-router';
 import { Progress } from 'react-sweet-progress';
 import "react-sweet-progress/lib/style.css";
-import {GetResearchesByOwner} from '../Utils/getResearches';
 import Moment from 'react-moment';
+import {  MDBBtn,MDBDataTable } from 'mdbreact';
+import {FaTrashAlt} from 'react-icons/fa';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import {DeleteResearch} from '../Utils/getResearches';
 
 
 class ResearchHistory extends Component{
@@ -13,11 +17,13 @@ class ResearchHistory extends Component{
         this.state ={
             percentage:0,
             researches :[],
-            researchClick : false
+            researchClick : false,
+            refresh : false
         }
 
         this.handleClick = this.handleClick.bind(this);
         this.checkStatus = this.checkStatus.bind(this);
+        this.deleteResearch = this.deleteResearch.bind(this);
     }
 
     componentDidMount(){
@@ -37,30 +43,93 @@ class ResearchHistory extends Component{
         return;
     }
 
+    deleteResearch(index){
+        console.log('delete research', this.state.researches[index].Id);
+        confirmAlert({
+            title: 'Delete Research',
+            message: 'Are you sure delete this research?',
+            buttons: [
+              {
+                label: 'Yes',
+                onClick: () => {
+                    DeleteResearch(this.state.researches[index].Id);
+                    this.setState({refresh:true});
+                }
+              },
+              {
+                label: 'No',
+                onClick: () => {}
+              }
+            ]
+          })
+    }
+
     renderTableBody() {
         const { researches} = this.state;
+        let d = [];
+        const style ={
+            'cursor' : 'pointer',
+            'color': '#db1818'
+        }
         if(researches != null){
-            return researches.map((research,index) => {
-                
-                return (
-                    <tr>
-                        <td scope="row">{index}</td>
-                        <td>{research.Name}</td>
-                        <td>{research.Description}</td>
-                        <td>  
-                            {this.checkStatus(research)}                         
-                            {/* <Progress
-                                type="circle"
-                                width={30}
-                                percent={30}
-                            /> */}
-                        </td>
-                        <td><button onClick={() => this.handleClick(index)} className="btn btn-info">Go To Research</button></td>   
-                    </tr>
-                )
+            researches.map((research,index) => {
+                d.push({
+                    '#': index,
+                    'Name':research.Name,
+                    'Description':research.Description,
+                    'Status': this.checkStatus(research),
+                    'Results': <div><MDBBtn onClick={() => this.handleClick(index)} rounded size="sm">Go To Research</MDBBtn><FaTrashAlt style={style} onClick={()=>this.deleteResearch(index)}/></div>
+                })
             });
         }
+
+        const data = {
+            columns: [
+            {
+                label: '#',
+                field: '#',
+                sort: 'asc',
+                width: 50
+            },
+            {
+                label: 'Name',
+                field: 'Name',
+                sort: 'asc',
+                width: 250
+            },
+            {
+                label: 'Description',
+                field: 'Description',
+                sort: 'asc',
+                width: 250
+            },
+            {
+                label: 'Status',
+                field: 'Status',
+                sort: 'asc',
+                width: 100
+            },
+            {
+                label: 'Results',
+                field: 'Results',
+                sort: 'asc',
+                width: 350
+            }
+            ],
+            rows: d
+        };
+        
+        return (
+            <MDBDataTable
+                striped
+                responsive
+                small
+                data={data}
+                searching={false}
+            />
+            );
     }
+
 
     checkStatus(research){
 
@@ -89,23 +158,11 @@ class ResearchHistory extends Component{
                 state: {research :this.state.research} 
             }} />)
         }
+
         return (
             <div id="research_history">
-                <h1>Research History</h1>
-                <table className="table table-striped table-hover table- table-responsive{-xl}">
-                    <thead>
-                        <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Results</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.renderTableBody()}
-                    </tbody>
-                </table>
+                <h1>Research History</h1>               
+                {this.renderTableBody()}
             </div>
         );
     }

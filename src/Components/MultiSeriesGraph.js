@@ -43,7 +43,7 @@ class MultiSeriesGraph extends Component{
         return (
         <LineChart
             width={1000}
-            height={450}
+            height={550}
             data={data}
             margin={{
             top: 10, right: 10, left: 10, bottom: 10,
@@ -51,7 +51,9 @@ class MultiSeriesGraph extends Component{
         >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis tick={{ fill: '#f8f9fa' }} dataKey="Date" />
-            <YAxis tick={{ fill: '#f8f9fa' }}/>
+            
+            <YAxis tick={{ fill: '#f8f9fa' }} label={{ value: 'Index', angle: -90, position: 'insideLeft' }}/>
+
             <Tooltip />
             <Legend />
             <Line type="monotone" dataKey="Light" stroke="#8884d8" activeDot={{ r: 8 }} />

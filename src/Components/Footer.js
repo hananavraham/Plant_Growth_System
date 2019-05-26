@@ -1,4 +1,10 @@
 import React from "react";
+import {FaInstagram, FaFacebook, FaTwitter, FaGoogle} from 'react-icons/fa';
+
+const style={
+    'color': '#ffff',
+    'margin-left': '15px'
+}
 
 const FooterPage = () => {
   return (
@@ -6,32 +12,18 @@ const FooterPage = () => {
     <div className="container-fluid text-center text-md-left">
       <div className="row">
         <div className="col-md-6 mt-md-0 mt-3">
-          <h5 className="text-uppercase">Footer Content</h5>
-          <p> here to organize your footer content.</p>
+          <h5 className="text-uppercase">Plant Growth System</h5>
+          <p>&copy; Shenkar Software Engineering Department</p>
         </div>
         <hr className="clearfix w-100 d-md-none pb-3"></hr>
-        <div className="col-md-3 mb-md-0 mb-3">
-            <h5 className="text-uppercase">Links</h5>
-            <ul className="list-unstyled">
-              <li>
-                <a href="#!">Link 1</a>
-              </li>
-              <li>
-                <a href="#!">Link 2</a>
-              </li>
-            </ul>
-          </div>
-          <div className="col-md-3 mb-md-0 mb-3">
-            <h5 className="text-uppercase">Links</h5>
-            <ul className="list-unstyled">
-              <li>
-                <a href="#!">Link 1</a>
-              </li>
-              <li>
-                <a href="#!">Link 2</a>
-              </li>
-            </ul>
-          </div>
+        <div className="col-md-5 mb-md-0 mb-3">
+            <div className="form-row">
+              <a href="#"><FaFacebook size='23' style={style}/></a>
+              <a href="#"><FaInstagram size='23' style={style}/></a>
+              <a href="#"><FaTwitter size='23' style={style}/></a>
+              <a href="#"><FaGoogle size='23' style={style}/></a>
+            </div>
+        </div>
       </div>
     </div>
     </footer>

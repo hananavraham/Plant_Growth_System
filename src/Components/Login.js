@@ -38,16 +38,22 @@ class Login extends Component{
             <div id="login">
                 <h1>Login</h1>
                 <form onSubmit={this.checkUserAuth}>
-                    <label>Email:</label>
-                    <div className="form-row">
-                        <FaUserAlt className="icon"></FaUserAlt>
-                        <input type="email" require className="form-control" ref="email" name="email" placeholder="Email"></input>
-                    </div>
-                    <label>Password:</label>
-                    <div className="form-row">
-                        <FaLock className="icon"></FaLock>
-                        <input type="password" require className="form-control" ref="password" name="password" placeholder="Password"></input>
-                    </div>
+                    <article>
+                        <label>Email:</label>
+                        <div className="form-row">
+                            <FaUserAlt className="icon"></FaUserAlt>
+                            <input type="email" require className="form-control" ref="email" name="email" placeholder="Email"></input>
+                        </div>
+                    </article>
+                    <article>
+                        <label>Password:</label>
+                        <div className="form-row">
+                            <FaLock className="icon"></FaLock>
+                            <input type="password" require className="form-control" ref="password" name="password" placeholder="Password"></input>
+                        </div>                        
+                    </article>
+
+                    
                     <button type="submit" className="btn btn-primary">Sign In</button>
                 </form>
             </div>

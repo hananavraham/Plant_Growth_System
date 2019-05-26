@@ -26,7 +26,7 @@ class AddNewResearchBox extends Component{
         }
         return(
             <div id="researchBox">
-                <div onClick={this.newResearchClick} class="plus">
+                <div onClick={this.newResearchClick} className="plus">
                     <h3>+</h3>
                 </div>
                 <div>

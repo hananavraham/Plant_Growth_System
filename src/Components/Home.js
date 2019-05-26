@@ -5,6 +5,7 @@ import ResearchBox from './ResearchBox';
 import AddNewResearch from './AddNewResearchBox';
 import {GetResearchesByOwner} from '../Utils/getResearches';
 import {getAllGeneralPlants} from '../Utils/getGeneralPlants';
+import {FaArrowRight, FaArrowLeft, FaSearch} from 'react-icons/fa';
 
 class Home extends Component{
 
@@ -65,7 +66,7 @@ class Home extends Component{
         const { researches} = this.state;
         if(researches != null){
             return researches.map((research, index) => {
-                this.state.generalPlants.map(plant =>{
+                this.state.generalPlants.map((plant,i) =>{
                     if(plant.Id == research.General_plant_id){
                         plantImg = plant.Image;
                     }
@@ -76,7 +77,7 @@ class Home extends Component{
                     return;
                 }
                 return (
-                    <ResearchBox name={research.Name} 
+                    <ResearchBox key={index} name={research.Name} 
                             description={research.Description} 
                             status={research.Status}
                             image={plantImg}
@@ -95,27 +96,22 @@ class Home extends Component{
         if(this.state.renderResearch){
             this.props.history.push(`/ResearchPage`);
         }
-
+        const style ={
+            'color':'#f1f1f1'
+        }
         return (       
             <div id="dashboard">
-                
-                
-                <div className="input-group md-form form-sm form-1 pl-0">
-                    <div className="input-group-prepend">
-                        <span className="input-group-text purple lighten-3" id="basic-text1"><i className="fas fa-search text-white"
-                            aria-hidden="true"></i></span>
+                <div className="input-group md-form form-sm form-2 pl-0">
+                    <input className="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search"></input>
+                    <div className="input-group-append">
+                            <span className="input-group-text red lighten-3" id="basic-text1"><FaSearch/></span>
                     </div>
-                    <input className="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search"></input>>
-                </div>
-
+                </div>                     
                 <div id="boxes">
-                    {/* <button className="round" onClick={this.prevProperty}>Prev</button> */}
-                    <a onClick={this.prevProperty} className="previous round">&#8249;</a>
-
+                    <a onClick={this.prevProperty} className="previous round"><FaArrowLeft style={style} size='30'/></a>
                     <AddNewResearch userId={this.state.userId}></AddNewResearch>
                     {this.renderResearches()}
-                    <a onClick={this.nextProperty} className="next round">&#8250;</a>
-                    {/* <button onClick={this.nextProperty}>Next</button> */}
+                    <a onClick={this.nextProperty} className="next round"><FaArrowRight style={style}size='30'/></a>
                 </div>
             </div>
         )};

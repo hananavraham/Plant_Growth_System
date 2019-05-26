@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { Route, Redirect } from 'react-router';
 import MultiSeriesGraph from './MultiSeriesGraph';
 import {GetResearchPlants, StopOrContinueResearch} from '../Utils/getResearches';
-import {FaCog} from 'react-icons/fa';
+import {FaCog, FaTag , FaAlignLeft} from 'react-icons/fa';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css' 
+import {ExcelRenderer} from 'react-excel-renderer';
 import $ from "jquery";
 
 class ResearchPage extends Component{
@@ -23,6 +24,8 @@ class ResearchPage extends Component{
         this.updateEndDate     = this.updateEndDate.bind(this);
         this.updateStartDate   = this.updateStartDate.bind(this);
         this.stopResearch      = this.stopResearch.bind(this);
+        this.saveFile          = this.saveFile.bind(this);
+        this.uploadFiles       = this.uploadFiles.bind(this);
         this.updateResearchControlPlan = this.updateResearchControlPlan.bind(this);
     }
 
@@ -33,10 +36,10 @@ class ResearchPage extends Component{
 
                 this.setState({research : this.props.location.state.research});
                 this.setState({ plants : jsonData.responseJSON});
-                // this.setState({
-                //     start_date: this.props.location.state.research.Start_date,
-                //     end_date: this.props.location.state.research.End_date
-                // });
+                this.setState({
+                    start_date: new Date(this.props.location.state.research.Start_date).toLocaleDateString(),
+                    end_date: new Date(this.props.location.state.research.End_date).toLocaleDateString()
+                });
             }
 
             catch{}
@@ -70,7 +73,7 @@ class ResearchPage extends Component{
             return plants.map(plant => {
                 ++ i;
               return (
-                <option>{i}</option>
+                <option key={i}>{i}</option>
               )
             });
         }
@@ -82,6 +85,40 @@ class ResearchPage extends Component{
             return;
         }
         console.log('update');
+        confirmAlert({
+            title: 'please upload xlsx files',
+            buttons: [
+              {
+                label: 'Upload',
+                onClick: () => {this.uploadFiles(this.state.research.Id,this.state.files)}
+              },
+              {
+                label: 'Cancel',
+                onClick: () => {}
+              }
+            ],
+            childrenElement: () => <input type='file' multiple="multiple" required onChange={(e)=>this.saveFile(e)}></input>,
+        })
+    }
+
+    saveFile(e){
+        this.setState({files : e.target.files});
+    }
+
+    uploadFiles(researchId,files){
+        let size = files.length;
+        for(var i = 0 ; i < size; i++){
+            if(files[i].name.includes('.xlsx')){
+                ExcelRenderer(files[i], (err, resp) => {
+                    if(err){
+                        console.log(err);            
+                    }
+                    else{
+                        console.log('uploading....');
+                    }
+                });
+            }
+        }    
     }
 
 
@@ -90,8 +127,7 @@ class ResearchPage extends Component{
             return;
         }
         confirmAlert({
-            title: 'Stop Research',
-            message: 'Are you sure to stop this research?',
+            title: 'Are you sure to stop this research?',
             buttons: [
               {
                 label: 'Yes',
@@ -102,17 +138,20 @@ class ResearchPage extends Component{
                 onClick: () => {}
               }
             ]
-          })
+        })
         
     }
 
     showPlantRecords(event){
+        if(event.target.value == 0){
+            return;
+        }
         this.setState({selectedPlant: event.target.value -1});
     }
 
     render(){
         let plant = {};
-        const {research} = this.state;
+        const {research , start_date, end_date} = this.state;
         let statusStyle = {};
         try{
             if(this.state.selectedPlant != null){
@@ -130,28 +169,27 @@ class ResearchPage extends Component{
 
         catch{}
 
+        var style={
+            "display": 'inline',
+            'margin-right': '10px',
+            'color': '#ffff'
+        }
         return (
             <div id="researchPage">
                 <h1>Research Report</h1>
-                <div className="form-row">
-                    <article>
-                        <i className='fas fa-paperclip'></i>
-                        <h2>{research.Name}</h2>
-                        <div className="line"></div>
-                        <h3>{research.Description}</h3>
-                        <div className="line"></div>.<div className="line"></div>
+                <div className="firstDiv">
+                    <article>                 
+                        <h2><FaTag size='20' style={style}/>{research.Name}</h2>
+                        {/* <div className="line"></div> */}
+                        <h3><FaAlignLeft size='20' style={style} />{research.Description}</h3>
+                        {/* <div className="line"></div>.<div className="line"></div> */}
                     </article>
                     <article>
                         <label>Start Date:</label> <label>{research.Start_date}</label><br></br>
                         <label>End Date:</label> <label>{research.End_date}</label>
                     </article>
-                    <article id="plantDetails">
-                        <label>Plant Status: &nbsp;</label><label style={statusStyle}>{plant.Status}</label><br></br>
-                        <label>Frequency_of_measurement: &nbsp;</label><label>{plant.Frequency_of_measurement} Hours</label><br></br>
-                        <label>Frequency_of_upload: &nbsp;</label><label>{plant.Frequency_of_upload} Hours</label>
-                    </article>
                     <div className="dropdown">
-                        <button onClick={this.showOption} className="dropbtn"><FaCog size='lg'></FaCog></button>
+                        <button onClick={this.showOption} className="dropbtn"><FaCog size='lg'/></button>
                         <div className="dropdown-content">
                             <a href="#" onClick={this.updateResearchControlPlan}>Update Control Plans</a>
                             <a href="#">Link 3</a>
@@ -159,18 +197,25 @@ class ResearchPage extends Component{
                         </div>
                     </div>
                 </div>
-                <br></br><br></br>
+                {/* <br></br><br></br> */}
                 <div className="researchContent">
+                    <article id="plantDetails">
+                        <label>Plant Status:&nbsp;</label><label style={statusStyle}>{plant.Status}</label>
+                        <label>Measure cycle: {plant.Frequency_of_measurement} Hours</label>
+                        <label>Upload cycle: {plant.Frequency_of_upload} Hours</label>
+                        <label>Choose Plant:</label>
+                        <div className="form-group">                          
+                            <select onChange={this.showPlantRecords} className="form-control">
+                                <option value='0'></option>
+                                {this.renderSelectPlant()}
+                            </select>                    
+                        </div>
+                    </article>
+                    
                     <button>Graph1</button>
                     <button>Graph2</button>
                     <button>Graph3</button>
-                    <div className="form-group">
-                        <label>Choose Plant</label>
-                        <select onChange={this.showPlantRecords} className="form-control">
-                            <option></option>
-                            {this.renderSelectPlant()}
-                        </select>                    
-                    </div>
+                    
                     <p>
                         <label>End Date</label>
                         <input type="date" onChange={this.updateEndDate} name="end_date"></input>
@@ -179,12 +224,14 @@ class ResearchPage extends Component{
                         <label>Start Date</label>
                         <input type="date" onChange={this.updateStartDate} name="start_date"></input>
                     </p>
-                    
-                    <MultiSeriesGraph plants={this.state.plants} 
+                    <div className="grpah">
+                        <MultiSeriesGraph plants={this.state.plants} 
                                       selectedPlant={this.state.selectedPlant}
                                       end_date={this.state.end_date}
                                       start_date={this.state.start_date}
                                       />
+                    </div>
+                    
                 </div>
                 
 

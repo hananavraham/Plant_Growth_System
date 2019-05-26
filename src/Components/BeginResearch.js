@@ -44,9 +44,9 @@ class BeginResearch extends Component{
     renderSelectPlantType() {
         const { generalPlants} = this.state;
         if(generalPlants != null){
-            return generalPlants.map(generalPlant => {
+            return generalPlants.map((generalPlant,i) => {
                 return (
-                  <option>{generalPlant.Name}</option>
+                  <option key={i}>{generalPlant.Name}</option>
                 )
             });
         }
@@ -55,9 +55,9 @@ class BeginResearch extends Component{
     renderSelectOwners() {
         const { owners} = this.state;
         if(owners != null){
-            return owners.map(owner => {
+            return owners.map((owner,i) => {
                 return (
-                  <option type="checkbox">{owner.Name}</option>
+                  <option key={i} type="checkbox">{owner.Name}</option>
                 )
             }); 
         }
@@ -78,8 +78,6 @@ class BeginResearch extends Component{
                 this.setState({General_plant_id : plant.Id});
             }
         })
-            
-
     }
 
     saveFile(e){
@@ -87,14 +85,19 @@ class BeginResearch extends Component{
     }
 
     uploadFile(researchId,files){
-         ExcelRenderer(files[0], (err, resp) => {
-            if(err){
-              console.log(err);            
+        let size = files.length;
+        for(var i = 0 ; i < size; i++){
+            if(files[i].name.includes('.xlsx')){
+                ExcelRenderer(files[i], (err, resp) => {
+                    if(err){
+                        console.log(err);            
+                    }
+                    else{
+                        return readExcelFile(researchId,resp.cols,resp.rows);
+                    }
+                });
             }
-            else{
-                return readExcelFile(researchId,resp.cols,resp.rows);
-            }
-          });
+        }    
     }
 
 
@@ -102,10 +105,10 @@ class BeginResearch extends Component{
         event.preventDefault();
         let owners = [];
         if(this.state.selectedOwner){
-            owners = [this.props.location.state.userId,this.state.selectedOwner];
+            owners = [localStorage.getItem('userId'),this.state.selectedOwner];
         }
         else{
-            owners = [this.props.location.state.userId];
+            owners = [localStorage.getItem('userId')];
         }
         let research = {
             Name : this.refs.name.value,
@@ -120,9 +123,11 @@ class BeginResearch extends Component{
         };
 
             try{
+                // creating new research
                 let newResearch = (CreateNewResearch(research)).responseJSON;
                 research.Id = newResearch.Id;
-                this.uploadFile(newResearch.Id,this.state.files);
+                // creating research plants and control Plan
+                this.uploadFile(research.Id,this.state.files);
 
                 var new_research = (getResearchByID(research.Id)).responseJSON;
 
@@ -134,12 +139,8 @@ class BeginResearch extends Component{
                     text: 'Research Successfully created',
                     timeout: 3000
                 }).show();
-
-
-
                 this.setState({research :new_research});
             }
-
             catch{ 
                 new Noty({
                     type: 'error',
@@ -147,13 +148,7 @@ class BeginResearch extends Component{
                     text: 'Research was not created!',
                     timeout: 3000
                 }).show();
-
-
-            }
-
-            
-            
-            
+            }       
     }
 
 
@@ -195,9 +190,11 @@ class BeginResearch extends Component{
                                 </select>                    
                             </div>
                             <div className="form-group">
+                                <label>Number of Plants</label>
                                 <input type="number" required className="form-control" min='1' ref="number_of_plants" placeholder="Number Of Plants"></input>
                             </div>
                             <div className="form-group">
+                                <label>Start Date</label>
                                 <input type="date" required className="form-control date" ref="start_date" placeholder="Start Date"></input>
                             </div>
                         </div>
@@ -210,12 +207,16 @@ class BeginResearch extends Component{
                                 </select>
                             </div>
                             <div className="form-group">
+                                <label>End Date</label>
                                 <input type="date" required className="form-control date" ref="end_date" placeholder="End Date"></input>
                             </div>
                         </div>
                     </div> 
-                    <label>Upload Control Plan File:</label>
-                    <input className="fileBox" type="file" required onChange={(e)=>this.saveFile(e)} ref="file"></input>
+                    <div className="uploadFile">
+                        <label>Upload Control Plan Files:</label>
+                        <input className="fileBox" type="file" multiple="multiple" required onChange={(e)=>this.saveFile(e)} ref="file"></input>
+                    </div>
+
                     <div className="form-group">
                         <div className="col-sm-10">
                             <button id="goBack" onClick={()=>this.setState({goBack: true})} className="btn">Back</button>

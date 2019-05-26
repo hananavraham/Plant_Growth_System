@@ -40,7 +40,7 @@ class ResearchBox extends Component{
             <div id="researchBox">
                 <img src={this.props.image}></img>
                 <div>
-                    <FaCog class="cogIcon" onClick={this.GotoResearch}></FaCog>
+                    <FaCog className="cogIcon" onClick={this.GotoResearch}></FaCog>
                     <h5>{this.props.name}</h5>
                     <article>{this.props.description}</article>
                     <p className="from-row">

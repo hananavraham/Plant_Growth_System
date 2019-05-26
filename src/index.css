@@ -2,7 +2,7 @@ body {
   /* margin: 0 auto; */
   padding: 0;
   width:100%;
-  height: 900px;
+  height: 100%;
   /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -29,7 +29,7 @@ h1{
   background-image: url(./public/images/background1.png);
   background-repeat: no-repeat;
   width:100%;
-  height: 900px;
+  height: 100%;
 }
 
 #logo{
@@ -39,12 +39,28 @@ h1{
   background-repeat: no-repeat;
 }
 
+.react-confirm-alert-body h1{
+  color: #333;
+  font-size: medium;
+}
+
+.react-confirm-alert-body button{
+  margin-left: 60px;
+}
+
 
 /*--------------------- Login ---------------------------*/
 #login{
   margin:0 auto;
   width:60%;
   height: 800px;
+}
+
+#login article{
+  margin: 0 auto;
+  width:320px;
+  height: 100px;
+  /* border: 2px solid #fff; */
 }
 
 #login form{
@@ -68,14 +84,13 @@ h1{
 }
 
 #login form label{
-  text-align: center;
   color:#36ac4d;
   font-weight: bold;
-  margin-left: 30px;
+  margin-left: 35px;
 }
 
 #login form button{
-  margin: 30px 0 0 25%;
+  margin: 30px 0 0 33%;
   background-color: #36ac4d;
   width:150px;
 }
@@ -86,10 +101,15 @@ h1{
 
 /*------------------- Footer ----------------------------*/
 footer{
-  background-color: #28a745;
+  background-color: #28a745bd;
   width:100%;
   height: 120px;
   color:#ffff;
+}
+
+footer .form-row{
+  float: right;
+  margin-top:25px;
 }
 /*--------------------------------------------------------*/
 
@@ -139,7 +159,6 @@ header i{
   height: 800px;
 }
 
-
 #dashboard .input-group{
   margin: 0 auto;
   width: 522px;
@@ -153,7 +172,7 @@ header i{
   display: flex;
   flex-direction: left;
   /* flex-wrap: wrap; */
-  width:80%;
+  max-width:80%;
 }
 
 #boxes a{
@@ -163,9 +182,9 @@ header i{
   top:200px;
   text-decoration: none;
   font-weight: bold;
-  display: inline-block;
+  /* display: inline-block; */
   padding: 8px 16px;
-  background-color: #f1f1f1;
+  /* background-color: #f1f1f1; */
   border-radius: 30px;
   position: relative;
 }
@@ -174,6 +193,14 @@ header i{
   background-color: #4CAF50;
   color: black;
 }
+
+.slider-wrapper{
+  display: flex;
+  flex-direction: left;
+}
+
+
+
 
 /*--------------------------------------------------------*/
 
@@ -201,7 +228,9 @@ header i{
 
 #researchBox div{
   background-color: #ffffff;
+  width:247px;
   height: 160px;
+  border-top:1px solid #6a626240;
 }
 
 #researchBox .icons{
@@ -277,34 +306,46 @@ header i{
 
 #researchPage{
   width:100%;
-  height: 800px;
+  height: 900px;
 }
+
+/* .tagIcon{
+  color:#ffff;
+} */
 
 #researchPage div:nth-child(1){
   width:100%;
 }
 
+#researchPage .firstDiv{
+  width:100%;
+  display: flex;
+  flex-direction: row; 
+}
+
+
+
 #researchPage article{
   /* width: 500px; */
-  height: 100px;
+  /* height: 100px; */
   margin-left:40px;
-  width:40%;
+  /* width:40%; */
 }
 
 
 #researchPage article:nth-child(2){
   color:#ffff;
+  position: relative;
+  left:150px;
   font-size: 18px;
   width:180px;
-  margin-left:20px;
+  margin-top: 20px;
 }
 
 #researchPage article:nth-child(3){
-  margin-left:20px;
+  margin-left:80px;
   max-width:300px;
 }
-
-
 
 /* #researchPage article:nth-child(2){
   color:#ffff;
@@ -318,7 +359,7 @@ header i{
 }
 
 #researchPage h3{
-  margin-top:40px;
+  margin:20px 0 20px 0;
   font-size: 18px;
 }
 
@@ -344,10 +385,10 @@ header i{
 }
 
 .dropdown {
-
   position: relative;
   display: inline-block;
-  right:5px;
+  left:390px;
+  margin-top: 30px;
   border: none;
   background: none;
 }
@@ -372,23 +413,27 @@ header i{
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
-.researchContent{
-  margin: 40px 10px 10px 150px;
-  width:80%;
-  height: 520px;
-  border: 1px solid #f8f9fa;
+.react-confirm-alert-body input{
+  margin-left: 70px;
+  width:100%;
 }
 
+.researchContent{
+  margin: 0px 10px 10px 150px;
+  width:80%;
+  /* height: 520px; */
+  /* border: 1px solid #f8f9fa; */
+}
 
 .researchContent div{
   float: right;
   width:100px;
   height: 50px;
-  margin: 10px 40px 5px 0;
+  margin: 10px 10px 5px 0;
 }
 
 .researchContent button{
-  margin: 5px 0 0 10px;
+  margin: 30px 0 0 10px;
   background-color: #36ac4d;
   border-radius: 10px 10px 0 0;
 }
@@ -406,24 +451,41 @@ header i{
 
 .researchContent p{
   float:right;
-  margin: 5px 30px 0 0;
+  margin: 30px 30px 0 0;
+}
+
+.researchContent .grpah{
+  width:100%;
+  margin:0 auto;
+  height: 100%;
+  border:1px solid #689175;
+  background-color: #06070680;
 }
 
 .recharts-legend-item-text{
   color:#ffff;
 }
 
-
 #plantDetails{
+  width:100%;
+  height:65px;
   text-align: center;
   color:#ffff;
   border: 1px solid #689175;
+  margin: 0 auto !important;
 }
 
 #plantDetails label{
   font-weight: 500;
-  margin:3px;
+  margin-top:15px;
+}
 
+#plantDetails label:nth-child(3),#plantDetails label:nth-child(4){
+  margin-left: 40px;
+}
+
+#plantDetails label:nth-child(5){
+  margin-left:180px;
 }
 
 /*--------------------------------------------------------*/
@@ -437,9 +499,9 @@ header i{
 
 #beginResearch input, textarea{
   width: 327px;
-  margin-top: 25px;
   border: 1px solid #36ab4c;
   margin-left: 20px;
+  /* margin-top: 20px; */
 }
 
 #beginResearch label, select{
@@ -450,7 +512,7 @@ header i{
 #beginResearch select{
   width:155px;
   height: 48px;
-  margin-top:-6px;
+  /* margin-top:-6px; */
   border: 1px solid #36ab4c;
 }
 
@@ -474,12 +536,12 @@ header i{
   margin-left: 25px;
   position: relative;
   float: left;
-  bottom: 140px;
+  bottom: 120px;
 }
 
 #beginResearch img{
   margin-right: 120px;
-  margin-top:25px;
+  /* margin-top:25px; */
   width: 318px;
   height: 200px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
@@ -507,18 +569,29 @@ header i{
   margin-top:-100px;
 }
 
+#beginResearch .uploadFile{
+  margin-left:20px;
+  border:2px solid #ddd;
+  background-color: #007bff2e;
+  border-radius: 5px;
+  width:250px;
+  height:120px;
+}
+
 #beginResearch .fileBox{
+  color:#ffff;
   border: none;
+  width:220px;
+  /* margin-left: 30px; */
 }
 
 #beginResearch #goBack{
   float: left;
   margin-left:5px;
 }
-/* 
-#beginResearch #goBack:hover{
-  background-color: #ab6136;
-} */
+
+
+
 
 /*--------------------------------------------------------*/
 
@@ -555,7 +628,7 @@ header i{
 #research_history{
   margin: 0 auto;
   width: 60%;
-  height: 800px;
+  height: 100%;
 }
 
 #research_history .table{
@@ -564,19 +637,69 @@ header i{
   color: #ffffff;
 }
 
+#research_history .table tbody tr{
+  height:60px;
+}
+
+
+/* #research_history .table tbody :hover{
+  background-color: #ced4da;
+} */
+
+
+#research_history .table tbody tr td{
+  vertical-align: middle;  
+  color: black;
+  font-weight: bold;
+}
+
 #research_history .react-sweet-progress-circle-outer{
   margin: 0 auto;
 }
 
+#research_history .react-sweet-progress-symbol{
+  color:#ffff;
+}
+
 
 #research_history .table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n) > th {
-  background-color: #689175;
+  background-color: #5ba768db;
+}
+
+#research_history .table-striped > tbody > tr:nth-child(2n +1) > td, .table-striped > tbody > tr:nth-child(2n +1) > th {
+  background-color: #ced4dabd;
 }
 
 #research_history button{
   border-radius: 10px;
-
+  /* border: 2px solid #ddd; */
+  border:2px solid black;
+  background-color: transparent;
+  /* color:#ffff; */
+  color:black; 
 }
+
+#research_history button:hover{
+  background-color: #28a745;
+}
+
+#research_history .pagination{
+  margin-top:30px;
+}
+
+#research_history .dataTables_length, .dataTables_info{
+  color:#ffff;
+}
+
+#research_history .page-item.active .page-link{
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+
+
+
+
 /* -----------------------------------------------------------*/
 
 /* ------------------------ Progress Bar --------------------*/
