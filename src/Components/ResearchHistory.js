@@ -17,8 +17,7 @@ class ResearchHistory extends Component{
         this.state ={
             percentage:0,
             researches :[],
-            researchClick : false,
-            refresh : false
+            researchClick : false
         }
 
         this.handleClick = this.handleClick.bind(this);
@@ -50,8 +49,14 @@ class ResearchHistory extends Component{
               {
                 label: 'Yes',
                 onClick: () => {
+                    var array = [...this.state.researches]; // make copy of researches array
                     DeleteResearch(this.state.researches[index].Id);
-                    this.setState({refresh:true});
+                    try{
+                        array.splice(index, 1);
+                    }
+                    catch{}
+                    this.setState({researches : array});
+                    console.log('deleted');
                 }
               },
               {
@@ -59,7 +64,7 @@ class ResearchHistory extends Component{
                 onClick: () => {}
               }
             ]
-          })
+        })
     }
 
     renderTableBody() {
@@ -149,7 +154,6 @@ class ResearchHistory extends Component{
     }
 
     render(){
-        const { researches} = this.state;
         if (this.state.researchClick === true){
             return (<Redirect to={{
                 pathname: '/ResearchPage',

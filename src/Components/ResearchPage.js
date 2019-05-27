@@ -19,7 +19,8 @@ class ResearchPage extends Component{
             research : {},
             start_date : null,
             end_date : null,
-            graph : 0
+            graph : 0,
+            refresh : true
         }
         this.renderSelectPlant = this.renderSelectPlant.bind(this);
         this.showPlantRecords  = this.showPlantRecords.bind(this);
@@ -62,12 +63,10 @@ class ResearchPage extends Component{
     }
 
     setSelectedGraph(index){
-        console.log('index:', index);
         this.setState({graph: index});
     }
 
     showSelectedGraph(){
-        console.log(this.state.graph);
         switch(this.state.graph){
             case 0:
                 return(
@@ -181,6 +180,7 @@ class ResearchPage extends Component{
 
     showPlantRecords(event){
         if(event.target.value == 0){
+            this.setState({selectedPlant: null});
             return;
         }
         this.setState({selectedPlant: event.target.value -1});
