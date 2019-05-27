@@ -27,7 +27,6 @@ class ResearchHistory extends Component{
     }
 
     componentDidMount(){
-        // let jsonData = GetResearchesByOwner("5c48386ae7179a5449418a67");
         const userId = localStorage.getItem('userId');
         const url = "https://plantgrowthsystembackend.azurewebsites.net/Research/GetResearchesByOwner?ownerId=" + userId;
         fetch(url, {
@@ -44,7 +43,6 @@ class ResearchHistory extends Component{
     }
 
     deleteResearch(index){
-        console.log('delete research', this.state.researches[index].Id);
         confirmAlert({
             title: 'Delete Research',
             message: 'Are you sure delete this research?',

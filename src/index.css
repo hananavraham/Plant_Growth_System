@@ -387,7 +387,8 @@ header i{
 .dropdown {
   position: relative;
   display: inline-block;
-  left:390px;
+  /* left:390px; */
+  left: 60%;
   margin-top: 30px;
   border: none;
   background: none;
@@ -427,15 +428,15 @@ header i{
 
 .researchContent div{
   float: right;
-  width:100px;
-  height: 50px;
-  margin: 10px 10px 5px 0;
+  width:250px;
+  height: 200px;
+  /* margin: 10px 10px 5px 0; */
 }
 
 .researchContent button{
   margin: 30px 0 0 10px;
   background-color: #36ac4d;
-  border-radius: 10px 10px 0 0;
+
 }
 
 .researchContent div select{
@@ -454,7 +455,7 @@ header i{
   margin: 30px 30px 0 0;
 }
 
-.researchContent .grpah{
+.researchContent .graph{
   width:100%;
   margin:0 auto;
   height: 100%;
@@ -487,6 +488,14 @@ header i{
 #plantDetails label:nth-child(5){
   margin-left:180px;
 }
+
+#plantDetails div{
+    float: right;
+    width:100px;
+    height: 50px;
+    margin: 10px 10px 5px 0;
+}
+
 
 /*--------------------------------------------------------*/
 

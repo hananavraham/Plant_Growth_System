@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { Route, Redirect } from 'react-router';
 import MultiSeriesGraph from './MultiSeriesGraph';
+import PowerGraph from './PowerGraph';
 import {GetResearchPlants, StopOrContinueResearch} from '../Utils/getResearches';
 import {FaCog, FaTag , FaAlignLeft} from 'react-icons/fa';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css' 
 import {ExcelRenderer} from 'react-excel-renderer';
 import $ from "jquery";
+
 
 class ResearchPage extends Component{
     constructor(props){
@@ -16,7 +18,8 @@ class ResearchPage extends Component{
             plants:[],
             research : {},
             start_date : null,
-            end_date : null
+            end_date : null,
+            graph : 0
         }
         this.renderSelectPlant = this.renderSelectPlant.bind(this);
         this.showPlantRecords  = this.showPlantRecords.bind(this);
@@ -26,6 +29,8 @@ class ResearchPage extends Component{
         this.stopResearch      = this.stopResearch.bind(this);
         this.saveFile          = this.saveFile.bind(this);
         this.uploadFiles       = this.uploadFiles.bind(this);
+        this.setSelectedGraph  = this.setSelectedGraph.bind(this);
+        this.showSelectedGraph = this.showSelectedGraph.bind(this);
         this.updateResearchControlPlan = this.updateResearchControlPlan.bind(this);
     }
 
@@ -55,6 +60,38 @@ class ResearchPage extends Component{
             $('.dropdown-content').css({'display':'block'});
         }
     }
+
+    setSelectedGraph(index){
+        console.log('index:', index);
+        this.setState({graph: index});
+    }
+
+    showSelectedGraph(){
+        console.log(this.state.graph);
+        switch(this.state.graph){
+            case 0:
+                return(
+                    <MultiSeriesGraph plants={this.state.plants} 
+                        selectedPlant={this.state.selectedPlant}
+                        end_date={this.state.end_date}
+                        start_date={this.state.start_date}
+                    />
+                )
+            case 1:
+                return(
+                    <PowerGraph plants={this.state.plants} 
+                        selectedPlant={this.state.selectedPlant}
+                        end_date={this.state.end_date}
+                        start_date={this.state.start_date}
+                    />
+                )
+
+            default:
+                break;
+        }
+    }
+
+
 
     updateEndDate(e){
         var date = new Date(e.target.value).toLocaleDateString();
@@ -197,7 +234,6 @@ class ResearchPage extends Component{
                         </div>
                     </div>
                 </div>
-                {/* <br></br><br></br> */}
                 <div className="researchContent">
                     <article id="plantDetails">
                         <label>Plant Status:&nbsp;</label><label style={statusStyle}>{plant.Status}</label>
@@ -212,8 +248,8 @@ class ResearchPage extends Component{
                         </div>
                     </article>
                     
-                    <button>Graph1</button>
-                    <button>Graph2</button>
+                    <button onClick={()=>this.setSelectedGraph(0)}>Graph1</button>
+                    <button onClick={()=>this.setSelectedGraph(1)}>Power Consumption Graph</button>
                     <button>Graph3</button>
                     
                     <p>
@@ -224,12 +260,14 @@ class ResearchPage extends Component{
                         <label>Start Date</label>
                         <input type="date" onChange={this.updateStartDate} name="start_date"></input>
                     </p>
-                    <div className="grpah">
-                        <MultiSeriesGraph plants={this.state.plants} 
-                                      selectedPlant={this.state.selectedPlant}
-                                      end_date={this.state.end_date}
-                                      start_date={this.state.start_date}
-                                      />
+                    <div className="graph">
+                            {this.showSelectedGraph()}
+
+                        {/* <MultiSeriesGraph plants={this.state.plants} 
+                                    selectedPlant={this.state.selectedPlant}
+                                    end_date={this.state.end_date}
+                                    start_date={this.state.start_date}
+                        /> */}
                     </div>
                     
                 </div>
